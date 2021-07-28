@@ -5,9 +5,17 @@
 }
 
 .book-content {
-  overflow:hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-
+.image{
+  height: 60px;
+  width: 15%;
+  position: absolute;
+  right: 25px;
+}
 .book-card {
   display: flex;
   flex-direction: column;

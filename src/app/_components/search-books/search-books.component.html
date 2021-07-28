@@ -13,7 +13,7 @@
 
 
 <div class="grid-container">
-  <mat-grid-list cols="2" rowHeight="250px">
+  <mat-grid-list cols="2" rowHeight="300px">
     <div *ngFor="let item of bookData">
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <mat-card class="book-card" (click)="viewBookDetails(item)">
@@ -27,8 +27,11 @@
           <span>
            <b>Authors:</b>
           </span>
-          <div *ngFor="let author of item.volumeInfo.authors">
+          <div *ngFor="let author of item.volumeInfo.authors | slice:0:2">
             <span>  {{ author }}</span>
+          </div>
+          <div *ngIf="item.volumeInfo.imageLinks">
+            <img mat-card-image class="image" src="{{item.volumeInfo.imageLinks.thumbnail}}">
           </div>
         </mat-card>
       </mat-grid-tile>
