@@ -1,0 +1,37 @@
+<div class="main-content">
+  <form [formGroup]="searchForm">
+    <mat-form-field>
+      <input
+        matInput
+        formControlName="searchQuery"
+        placeholder="Search Here.."
+      />
+    </mat-form-field>
+    <mat-icon (click)="findBooks()">search</mat-icon>
+  </form>
+</div>
+
+
+<div class="grid-container">
+  <mat-grid-list cols="2" rowHeight="250px">
+    <div *ngFor="let item of bookData">
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-card class="book-card" (click)="viewBookDetails(item)">
+         
+          <mat-card-header>
+            <mat-card-title>Title:&nbsp;{{item.volumeInfo.title}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="book-content">
+            {{ item.volumeInfo.description }}
+          </mat-card-content>
+          <span>
+           <b>Authors:</b>
+          </span>
+          <div *ngFor="let author of item.volumeInfo.authors">
+            <span>  {{ author }}</span>
+          </div>
+        </mat-card>
+      </mat-grid-tile>
+    </div>
+  </mat-grid-list>
+</div>
