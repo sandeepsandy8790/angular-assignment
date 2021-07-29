@@ -10,26 +10,26 @@
           "style": "scss"
         }
       },
-      "root": "",
-      "sourceRoot": "src",
+      "root": "apps/angular-assignment",
+      "sourceRoot": "apps/angular-assignment/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-assignment",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/apps/angular-assignment",
+            "index": "apps/angular-assignment/src/index.html",
+            "main": "apps/angular-assignment/src/main.ts",
+            "polyfills": "apps/angular-assignment/src/polyfills.ts",
+            "tsConfig": "apps/angular-assignment/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/angular-assignment/src/favicon.ico",
+              "apps/angular-assignment/src/assets"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss"
+              "apps/angular-assignment/src/styles.scss"
             ],
             "scripts": []
           },
@@ -37,8 +37,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/angular-assignment/src/environments/environment.ts",
+                  "with": "apps/angular-assignment/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -84,17 +84,17 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
+            "main": "apps/angular-assignment/src/test.ts",
+            "polyfills": "apps/angular-assignment/src/polyfills.ts",
+            "tsConfig": "apps/angular-assignment/tsconfig.spec.json",
+            "karmaConfig": "apps/angular-assignment/karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/angular-assignment/src/favicon.ico",
+              "apps/angular-assignment/src/assets"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss"
+              "apps/angular-assignment/src/styles.scss"
             ],
             "scripts": []
           }
@@ -103,9 +103,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "apps/angular-assignment/tsconfig.app.json",
+              "apps/angular-assignment/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -125,10 +124,38 @@
           }
         }
       }
+    },
+    "angular-assignment-e2e": {
+      "root": "apps/angular-assignment-e2e",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/angular-assignment-e2e/protractor.conf.js",
+            "devServerTarget": "angular-assignment:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-assignment:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/angular-assignment-e2e/tsconfig.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular-assignment",
   "cli": {
-    "analytics": "60e80576-2115-4c57-b553-1be90abc887d"
+    "analytics": "60e80576-2115-4c57-b553-1be90abc887d",
+    "defaultCollection": "@nrwl/angular"
   }
 }

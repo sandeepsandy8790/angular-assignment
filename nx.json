@@ -1,0 +1,25 @@
+{
+  "npmScope": "angular-assignment",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*",
+    "tsconfig.base.json": "*"
+  },
+  "projects": {
+    "angular-assignment": {
+      "tags": []
+    },
+    "angular-assignment-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "angular-assignment"
+      ]
+    }
+  }
+}
