@@ -2,25 +2,26 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import {IBook} from '../_models/book-details';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BooksService {
-  endPoint = 'https://www.googleapis.com/books/v1/volumes?q=';
+  ENDPOINT = 'https://www.googleapis.com/books/v1/volumes?q=';
   constructor(private http: HttpClient) {}
 
-  getBooks(queryParam: string): Observable<any> {
-    const API_URL = `${this.endPoint}${queryParam}`;
+  public getBooks(queryParam: string): Observable<any> {
+    const API_URL = `${this.ENDPOINT}${queryParam}`;
     return this.http.get(API_URL).pipe(
-      map((res: Response) => {
+      map((res: IBook) => {
         return res || {};
       }),
       catchError(this.errorHandler)
     );
   }
 
-  errorHandler(error: HttpErrorResponse): any {
+  private errorHandler(error: HttpErrorResponse): any {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;

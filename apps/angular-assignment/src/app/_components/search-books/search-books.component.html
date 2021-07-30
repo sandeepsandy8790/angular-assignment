@@ -31,7 +31,7 @@
             <span>  {{ author }}</span>
           </div>
           <div *ngIf="item.volumeInfo.imageLinks">
-            <img mat-card-image class="image" src="{{item.volumeInfo.imageLinks.thumbnail}}">
+            <img mat-card-image class="image" src="{{item.volumeInfo.imageLinks?.thumbnail}}">
           </div>
         </mat-card>
       </mat-grid-tile>

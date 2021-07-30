@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BooksService } from '../../shared/books.service';
+import { Subscription } from 'rxjs';
+import { IBook } from '../../_models/book-details';
 
 @Component({
   selector: 'app-search-books',
   templateUrl: './search-books.component.html',
   styleUrls: ['./search-books.component.scss'],
 })
-export class SearchBooksComponent implements OnInit {
-  searchForm: FormGroup;
-  bookData: any;
+export class SearchBooksComponent implements OnInit, OnDestroy {
+  searchForm!: FormGroup;
+  bookData!: IBook;
   displayCard: boolean;
+  subscription!: Subscription;
   constructor(
     private formBuilder: FormBuilder,
     private bookService: BooksService
-  ) {}
+  ) {
+    this.displayCard = false;
+  }
 
   ngOnInit(): void {
     this.searchForm = this.formBuilder.group({
@@ -22,17 +27,22 @@ export class SearchBooksComponent implements OnInit {
     });
     this.displayCard = false;
   }
-  findBooks(): any {
+  findBooks(): IBook {
     console.log(this.searchForm.value.searchQuery);
     const Query = this.searchForm.value.searchQuery;
-    this.bookService.getBooks(Query).subscribe((result) => {
+    this.subscription = this.bookService.getBooks(Query).subscribe((result) => {
       console.log(result.items);
       this.bookData = result.items;
     });
     this.displayCard = true;
+    return this.bookData;
   }
 
-  viewBookDetails(item): any{
+  viewBookDetails(item: IBook): any {
     console.log(item);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }
