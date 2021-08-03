@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BooksService } from '../../shared/books.service';
 import { Subscription } from 'rxjs';
 import { IBook } from '../../_models/book-details';
@@ -16,7 +17,8 @@ export class SearchBooksComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
   constructor(
     private formBuilder: FormBuilder,
-    private bookService: BooksService
+    private bookService: BooksService,
+    private router: Router
   ) {
     this.displayCard = false;
   }
@@ -28,10 +30,8 @@ export class SearchBooksComponent implements OnInit, OnDestroy {
     this.displayCard = false;
   }
   findBooks(): IBook {
-    console.log(this.searchForm.value.searchQuery);
     const Query = this.searchForm.value.searchQuery;
     this.subscription = this.bookService.getBooks(Query).subscribe((result) => {
-      console.log(result.items);
       this.bookData = result.items;
     });
     this.displayCard = true;
@@ -39,7 +39,8 @@ export class SearchBooksComponent implements OnInit, OnDestroy {
   }
 
   viewBookDetails(item: IBook): any {
-    console.log(item);
+    this.bookService.bookDetails = item;
+    this.router.navigate(['/book-details']);
   }
 
   ngOnDestroy(): void {

@@ -1,1 +1,44 @@
-<p>Need to display purchased books</p>
+<div style="text-align: center">
+  <h3 *ngIf="myCollections?.length == 0">No Books Purchased yet!</h3>
+</div>
+<section
+  *ngIf="myCollections?.length >= 1"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  fxLayoutGap="10px"
+>
+  <mat-card *ngFor="let item of myCollections" class="book-card">
+    <mat-card-header>
+      <mat-card-title>{{ item.bookInfo.volumeInfo.title }}</mat-card-title>
+    </mat-card-header>
+    <div *ngIf="item.bookInfo.volumeInfo.imageLinks">
+      <img
+        mat-card-image
+        class="image"
+        src="{{ item.bookInfo.volumeInfo.imageLinks?.thumbnail }}"
+      />
+    </div>
+    <mat-card-content class="book-content">
+      <div class="content">
+        {{ item.bookInfo.volumeInfo.description }}
+      </div>
+      <br />
+      <div class="author">
+        <span>
+          <b>Written By:</b>
+        </span>
+        <div *ngFor="let author of item.bookInfo.volumeInfo.authors">
+          <span> {{ author }}</span>
+        </div>
+      </div>
+      <br />
+      <div class="billing-info">
+        <b>Billing Address</b>
+        <p><b>Name:</b>&nbsp;&nbsp;&nbsp;{{ item.billingInfo.name }}</p>
+        <p><b>Email:</b>&nbsp;&nbsp;&nbsp;{{ item.billingInfo.email }}</p>
+        <p><b>Mobile:</b>&nbsp;&nbsp;&nbsp;{{ item.billingInfo.mobile }}</p>
+        <p><b>Address:</b>&nbsp;&nbsp;&nbsp;{{ item.billingInfo.address }}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>

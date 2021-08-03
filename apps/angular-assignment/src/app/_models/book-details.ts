@@ -1,6 +1,6 @@
 export interface IBook {
     id?: string;
-    bookInfo?: IBookdetails;
+    volumeInfo?: IBookdetails;
     saleInfo?: IBookPriceDetails;
 }
 

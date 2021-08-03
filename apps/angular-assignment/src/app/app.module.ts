@@ -5,10 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material-module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { SearchBooksComponent } from './_components/search-books/search-books.component';
 import { LayoutComponent } from './shared/layout/layout.component';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent, SearchBooksComponent],

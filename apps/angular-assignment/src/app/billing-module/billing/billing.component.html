@@ -1,1 +1,41 @@
-<p>billing works!</p>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <form [formGroup]="billingForm" novalidate>
+    <mat-card class="main">
+      <div style="text-align: center">
+        <h3>Billing Info</h3>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" required />
+        <mat-error *ngIf="handleError('name', 'required')">
+          Please enter your name
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required />
+        <mat-error *ngIf="handleError('email', 'required')">
+          Please enter your email
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>MobileNumber</mat-label>
+        <input matInput formControlName="mobile" required />
+        <mat-error *ngIf="handleError('mobile', 'required')">
+          Please enter your Mobilenumber
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Address</mat-label>
+        <textarea matInput formControlName="address" required></textarea>
+        <mat-error *ngIf="handleError('address', 'required')">
+          Please enter your Address
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="submitForm()">
+        SUBMIT
+      </button>
+    </mat-card>
+  </form>
+</div>

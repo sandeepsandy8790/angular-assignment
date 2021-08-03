@@ -1,0 +1,30 @@
+.main-content {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  
+  .book-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .image{
+    height: 60px;
+    width: 15%;
+    position: absolute;
+    right: 25px;
+  }
+  .book-card {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    cursor: pointer;
+    background-color: whitesmoke;
+  }
+  

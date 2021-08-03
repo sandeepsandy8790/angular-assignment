@@ -1,10 +1,8 @@
-
 <mat-toolbar color="primary" class="header">
-    <span class="nav-tool-items">
-        <mat-icon style="cursor: pointer;" (click)="sidenav.toggle()">menu</mat-icon>
-      </span>
+  <span class="nav-tool-items">
+    <mat-icon style="cursor: pointer" (click)="sidenav.toggle()">menu</mat-icon>
+  </span>
   <span class="title">Books Purchase</span>
-
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -20,13 +18,23 @@
         <mat-icon>search</mat-icon>&nbsp; Search
       </a>
       <a mat-list-item routerLinkActive="active" routerLink="/cart">
-        <mat-icon>add_shopping_cart</mat-icon>&nbsp; Cart
+        <mat-icon
+          [matBadge]="cartCount"
+          matBadgePosition="before"
+          matBadeColor="primary"
+          matBadgeSize="small"
+          >add_shopping_cart</mat-icon
+        >&nbsp; Cart
       </a>
       <a mat-list-item routerLinkActive="active" routerLink="/my-collections">
-        <mat-icon>receipt</mat-icon>&nbsp; My Collection
+        <mat-icon
+          [matBadge]="collectionCount"
+          matBadgePosition="before"
+          matBadeColor="primary"
+          matBadgeSize="small"
+          >collections</mat-icon
+        >&nbsp; My Collection
       </a>
     </mat-nav-list>
   </mat-sidenav>
-
 </mat-sidenav-container>
-

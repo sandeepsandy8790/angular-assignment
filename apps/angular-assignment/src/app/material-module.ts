@@ -9,6 +9,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,6 +24,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatInputModule,
     MatCardModule,
     MatGridListModule,
+    MatBadgeModule,
+    MatFormFieldModule,
+    MatDialogModule,
   ],
   exports: [
     MatButtonModule,
@@ -30,6 +37,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatInputModule,
     MatCardModule,
     MatGridListModule,
+    MatBadgeModule,
+    MatFormFieldModule,
+    MatDialogModule,
   ],
   providers: [],
 })

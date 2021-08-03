@@ -1,1 +1,38 @@
-<p>book-details works!</p>
+<section fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+  <mat-card class="book-card">
+    <mat-card-header>
+      <mat-card-title>{{ bookDetails?.volumeInfo.title }}</mat-card-title>
+    </mat-card-header>
+    <div *ngIf="bookDetails?.volumeInfo.imageLinks">
+      <img
+        mat-card-image
+        class="image"
+        src="{{ bookDetails.volumeInfo.imageLinks?.thumbnail }}"
+      />
+    </div>
+    <mat-card-content class="book-content">
+      <p>
+        <b>PublishedDate:</b>&nbsp;{{ bookDetails?.volumeInfo.publishedDate }}
+      </p>
+      <p><b>PageCount:</b>&nbsp;{{ bookDetails?.volumeInfo.pageCount }}</p>
+      <p><b>Language:</b>&nbsp;{{ bookDetails?.volumeInfo.language }}</p>
+      <p>
+        {{ bookDetails?.volumeInfo.description }}
+      </p>
+      <span>
+        <b>Written By:</b>
+      </span>
+      <div *ngFor="let author of bookDetails.volumeInfo?.authors">
+        <span> {{ author }}</span>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="navigateToCart()">
+        ADD TO CART
+      </button>
+      <button mat-raised-button color="primary" (click)="purchaseBook()">
+        BUY
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</section>

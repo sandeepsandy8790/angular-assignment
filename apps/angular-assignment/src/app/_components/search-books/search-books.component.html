@@ -11,27 +11,31 @@
   </form>
 </div>
 
-
 <div class="grid-container">
   <mat-grid-list cols="2" rowHeight="300px">
     <div *ngFor="let item of bookData">
       <mat-grid-tile [colspan]="1" [rowspan]="1">
         <mat-card class="book-card" (click)="viewBookDetails(item)">
-         
           <mat-card-header>
-            <mat-card-title>Title:&nbsp;{{item.volumeInfo.title}}</mat-card-title>
+            <mat-card-title
+              >Title:&nbsp;{{ item.volumeInfo.title }}</mat-card-title
+            >
           </mat-card-header>
           <mat-card-content class="book-content">
             {{ item.volumeInfo.description }}
           </mat-card-content>
           <span>
-           <b>Authors:</b>
+            <b>Authors:</b>
           </span>
-          <div *ngFor="let author of item.volumeInfo.authors | slice:0:2">
-            <span>  {{ author }}</span>
+          <div *ngFor="let author of item.volumeInfo.authors | slice: 0:2">
+            <span> {{ author }}</span>
           </div>
           <div *ngIf="item.volumeInfo.imageLinks">
-            <img mat-card-image class="image" src="{{item.volumeInfo.imageLinks?.thumbnail}}">
+            <img
+              mat-card-image
+              class="image"
+              src="{{ item.volumeInfo.imageLinks?.thumbnail }}"
+            />
           </div>
         </mat-card>
       </mat-grid-tile>
