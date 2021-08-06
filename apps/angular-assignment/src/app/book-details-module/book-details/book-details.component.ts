@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BooksService } from '../../shared/books.service';
+import { BooksService } from '../../_components/books.service';
 import { IBook } from '../../_models/book-details';
-import { BooksBillingService } from '../../shared/books-billing.service';
-import { CartService } from '../../shared/cart.service';
+import { BooksBillingService } from '../../billing-module/books-billing.service';
+import { CartService } from '../../cart-module/cart.service';
 
 @Component({
   selector: 'app-book-details',
@@ -20,15 +20,15 @@ export class BookDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.bookDetails = this.bookService.bookDetails;
+    this.bookDetails = this.bookService.getBookDetails();
   }
 
   purchaseBook(): void {
-    this.billingService.billedBooks = this.bookDetails;
+    this.billingService.setBilledBooks(this.bookDetails);
     this.router.navigate(['/billing-info']);
   }
   navigateToCart(): void {
-    this.cartService.cartItems.push(this.bookDetails);
+    this.cartService.setCartItems(this.bookDetails);
     this.router.navigate(['/cart-items']);
   }
 }

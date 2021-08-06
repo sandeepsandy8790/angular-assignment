@@ -1,4 +1,4 @@
-<section fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+<section *ngIf="bookDetails" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
   <mat-card class="book-card">
     <mat-card-header>
       <mat-card-title>{{ bookDetails?.volumeInfo.title }}</mat-card-title>

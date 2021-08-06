@@ -2,16 +2,16 @@
   <span class="nav-tool-items">
     <mat-icon style="cursor: pointer" (click)="sidenav.toggle()">menu</mat-icon>
   </span>
-  <span class="title">Books Purchase</span>
+  <span class="title">{{title}}</span>
 </mat-toolbar>
 
 <mat-sidenav-container>
   <mat-sidenav
     #sidenav
-    [mode]="isBiggerScreen() ? 'over' : 'side'"
-    [(opened)]="opened"
-    [fixedInViewport]="true"
-    [fixedTopGap]
+    mode="side"
+    [opened]="true"
+    fixedInViewport="true"
+    fixedTopGap=65
   >
     <mat-nav-list>
       <a mat-list-item routerLinkActive="active" routerLink="/search-book">

@@ -26,4 +26,12 @@ export class CartService {
     });
     return this.cartItems;
   }
+
+  setCartItems(item: IBook): void {
+    this.cartItems.push(item);
+  }
+
+  getCartItems(): IBook[] {
+    return this.cartItems;
+  }
 }

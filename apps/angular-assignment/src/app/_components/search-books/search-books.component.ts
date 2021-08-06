@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BooksService } from '../../shared/books.service';
+import { BooksService } from '../books.service';
 import { Subscription } from 'rxjs';
 import { IBook } from '../../_models/book-details';
 
@@ -15,6 +15,8 @@ export class SearchBooksComponent implements OnInit, OnDestroy {
   bookData!: IBook;
   displayCard: boolean;
   subscription!: Subscription;
+  errorMsg!: any;
+  errorText = 'No Books Found with Search Query Try with new keyword';
   constructor(
     private formBuilder: FormBuilder,
     private bookService: BooksService,
@@ -31,15 +33,24 @@ export class SearchBooksComponent implements OnInit, OnDestroy {
   }
   findBooks(): IBook {
     const Query = this.searchForm.value.searchQuery;
-    this.subscription = this.bookService.getBooks(Query).subscribe((result) => {
-      this.bookData = result.items;
-    });
+    this.subscription = this.bookService.getBooks(Query).subscribe(
+      (result) => {
+        this.bookData = result.items;
+        if (result.items === undefined || result.items?.length === 0) {
+          this.errorMsg = this.errorText ;
+        }
+      },
+      (error) => {
+        this.errorMsg = error;
+        console.log(error);
+      }
+    );
     this.displayCard = true;
     return this.bookData;
   }
 
   viewBookDetails(item: IBook): any {
-    this.bookService.bookDetails = item;
+    this.bookService.setBookDetails(item);
     this.router.navigate(['/book-details']);
   }
 

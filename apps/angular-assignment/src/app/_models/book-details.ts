@@ -17,5 +17,4 @@ export interface IBookdetails {
 export interface IBookPriceDetails {
     listPrice?: string;
     country?: string;
-    buyLink?: string;
 }

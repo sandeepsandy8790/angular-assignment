@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
+import { IBook } from '../_models/book-details';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { IBook } from '../_models/book-details';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class BooksService {
   ENDPOINT = 'https://www.googleapis.com/books/v1/volumes?q=';
@@ -22,7 +22,7 @@ export class BooksService {
     );
   }
 
-  private errorHandler(error: HttpErrorResponse): any {
+  public errorHandler(error: HttpErrorResponse): any {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;
@@ -30,5 +30,13 @@ export class BooksService {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(errorMessage);
+  }
+
+  getBookDetails(): IBook{
+    return this.bookDetails;
+  }
+
+  setBookDetails(item: IBook): void{
+    this.bookDetails = item;
   }
 }

@@ -10,7 +10,9 @@
     <mat-icon (click)="findBooks()">search</mat-icon>
   </form>
 </div>
-
+<div>
+  <p>{{errorMsg}}</p>
+</div>
 <div class="grid-container">
   <mat-grid-list cols="2" rowHeight="300px">
     <div *ngFor="let item of bookData">

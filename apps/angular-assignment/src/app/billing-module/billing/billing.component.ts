@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BooksBillingService } from '../../shared/books-billing.service';
+import { BooksBillingService } from '../books-billing.service';
 import { IBook } from '../../_models/book-details';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { Router } from '@angular/router';
-import { CartService } from '../../shared/cart.service';
+import { CartService } from '../../cart-module/cart.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -26,7 +26,7 @@ export class BillingComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.billedBooks = this.billingService.billedBooks;
+    this.billedBooks = this.billingService.getBilledBooks();
     this.setBillingForm();
   }
 

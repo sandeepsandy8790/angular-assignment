@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BooksBillingService } from '../../shared/books-billing.service';
+import { BooksBillingService } from '../../billing-module/books-billing.service';
 import { IBook } from '../../_models/book-details';
 
 @Component({
@@ -12,6 +12,6 @@ export class MyCollectionComponent implements OnInit {
   constructor(private billingService: BooksBillingService) {}
 
   ngOnInit(): void {
-    this.myCollections = this.billingService.purchasedBooks;
+    this.myCollections = this.billingService.getPurchasedBooks();
   }
 }

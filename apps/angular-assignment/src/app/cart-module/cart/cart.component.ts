@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../shared/cart.service';
+import { CartService } from '../cart.service';
 import { IBook } from '../../_models/book-details';
-import { BooksBillingService } from '../../shared/books-billing.service';
+import { BooksBillingService } from '../../billing-module/books-billing.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,7 +18,7 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cartItems = this.cartService.cartItems;
+    this.cartItems = this.cartService.getCartItems();
   }
 
   deleteBook(item: IBook): void {
@@ -26,7 +26,7 @@ export class CartComponent implements OnInit {
   }
 
   purchaseBook(item: IBook): void {
-    this.billingService.billedBooks = item;
+    this.billingService.setBilledBooks(item);
     this.router.navigate(['/billing-info']);
   }
 }
