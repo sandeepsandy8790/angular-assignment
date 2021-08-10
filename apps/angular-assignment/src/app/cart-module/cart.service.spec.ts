@@ -20,6 +20,22 @@ const BOOK: IBook = {
   }
 };
 
+const PURCHASEDBOOK: IBook = {
+  id: '222',
+  volumeInfo: {
+    title: 'Angular',
+    subtitle: 'Typescript Framework',
+    authors: 'XYZ',
+    publishedDate: '02-05-2001',
+    description: 'testing',
+    imageLinks: 'hbdhbfh'
+  },
+  saleInfo: {
+    country: 'India',
+    listPrice: '12$'
+  }
+};
+
 
 describe('CartService', () => {
   let service: CartService;
@@ -53,10 +69,17 @@ describe('CartService', () => {
     expect(service.cartItems.length).toEqual(0);
   });
 
-  it('should remove purchased items from cart', () => {
+  it('should remove purchased items from cart if item exist', () => {
     service.setCartItems(BOOK);
     billingService.purchasedBooks.push({bookInfo: BOOK});
     service.removeCartItems(billingService.purchasedBooks);
     expect(service.cartItems.length).toEqual(0);
+  });
+
+  it('should not remove purchased items from cart if item does not exist', () => {
+    service.setCartItems(BOOK);
+    billingService.purchasedBooks.push({bookInfo: PURCHASEDBOOK});
+    service.removeCartItems(billingService.purchasedBooks);
+    expect(service.cartItems.length).toEqual(1);
   });
 });

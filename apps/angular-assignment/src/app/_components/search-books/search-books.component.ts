@@ -12,7 +12,7 @@ import { IBook } from '../../_models/book-details';
 })
 export class SearchBooksComponent implements OnInit, OnDestroy {
   searchForm!: FormGroup;
-  bookData!: IBook;
+  bookData!: IBook[];
   displayCard: boolean;
   subscription!: Subscription;
   errorMsg!: any;
@@ -31,12 +31,12 @@ export class SearchBooksComponent implements OnInit, OnDestroy {
     });
     this.displayCard = false;
   }
-  findBooks(): IBook {
+  findBooks(): IBook[] {
     const Query = this.searchForm.value.searchQuery;
     this.subscription = this.bookService.getBooks(Query).subscribe(
       (result) => {
         this.bookData = result.items;
-        if (result.items === undefined || result.items?.length === 0) {
+        if (result.items === undefined) {
           this.errorMsg = this.errorText ;
         }
       },

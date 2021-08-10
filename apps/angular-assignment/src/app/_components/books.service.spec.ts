@@ -75,4 +75,16 @@ describe('BooksService', () => {
     service.getBookDetails();
     expect(Object.values(service.bookDetails).indexOf('111') > -1).toBeTrue();
   });
+
+  it('should return empty response from google api with the user query not found', fakeAsync(() => {
+    service.getBooks('aacsdajshdfhdfjdsgsggsg').subscribe((result) => {
+      expect(result).toBeNull();
+    });
+
+    const request = httpMock.expectOne(service.ENDPOINT + 'aacsdajshdfhdfjdsgsggsg');
+    expect(request.request.method).toEqual('GET');
+
+    tick();
+
+  }));
 });

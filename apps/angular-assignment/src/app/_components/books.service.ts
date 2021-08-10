@@ -16,7 +16,7 @@ export class BooksService {
     const API_URL = `${this.ENDPOINT}${queryParam}`;
     return this.http.get(API_URL).pipe(
       map((res: IBook) => {
-        return res || {};
+        return res;
       }),
       catchError(this.errorHandler)
     );
